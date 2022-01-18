@@ -59,33 +59,6 @@ spec:
             - name: {{ printf "http-%s-pod-port" (include "app-service.fullname" .) | trunc 15 | trimSuffix "-" }}
               containerPort: {{ .Values.containers.ports.containerPort }}
               protocol: TCP
-#          livenessProbe:
-#            httpGet:
-#              path: {{ tpl .Values.containers.probePath . }}
-#              port: {{ .Values.containers.ports.containerPort }}
-#              httpHeaders:
-#              - name: X-B3-Sampled
-#                value: "0"
-#            periodSeconds: 10
-#            failureThreshold: 3
-#          readinessProbe:
-#            httpGet:
-#              path: {{ tpl .Values.containers.probePath . }}
-#              port: {{ .Values.containers.ports.containerPort }}
-#              httpHeaders:
-#              - name: X-B3-Sampled
-#                value: "0"
-#            periodSeconds: 10
-#            failureThreshold: 3
-#          startupProbe:
-#            httpGet:
-#              path: {{ tpl .Values.containers.probePath . }}
-#              port: {{ .Values.containers.ports.containerPort }}
-#              httpHeaders:
-#              - name: X-B3-Sampled
-#                value: "0"
-#            periodSeconds: 5
-#            failureThreshold: 20
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
         {{- if .Values.cloudSQLProxy.enabled }}
