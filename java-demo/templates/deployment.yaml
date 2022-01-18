@@ -37,7 +37,7 @@ spec:
         - name: {{ include "app-service.fullname" . }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ printf "ghcr.io/kangxinlib/%s" (include "app-service.fullname" .) }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ printf "ghcr.io/kangxinlib/java_demo:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             {{- if .Values.cloudSQLProxy.enabled }}
