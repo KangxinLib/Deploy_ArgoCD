@@ -1,0 +1,4 @@
+image:
+  tag: f70c26c5075a10b73a3f16ffc363074586731018
+env: dev
+fullnameOverride: java_demo

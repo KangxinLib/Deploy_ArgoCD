@@ -1,0 +1,46 @@
+replicaCount: 1
+
+#containers:
+#  env:
+#    - name: auth0Domain
+#      value: "scs-dev-1.eu.auth0.com"
+#    - name: auth0Connection
+#      value: "Username-Password-Authentication"
+#    - name: auth0M2mClientId
+#      value: "NFtQ6pA2zNoZoq2foI1iEm6SeCcNV810"
+#    - name: auth0M2mAudience
+#      value: "https://scs-dev-1.eu.auth0.com/api/v2/"
+#    - name: auth0InternalM2mClientId
+#      value: "FYyKb7gXa3TltthvSIMrFwlJAsNSYdIu"
+#    - name: auth0SpaClientId
+#      value: "HvIwl6VRgjhZ6oCi27utLtsmvqyhd2dV"
+#    - name: seraiURL
+#      value: "https://dev.supplychain.seraitrade.net"
+#    - name: jwtIssuer
+#      value: "dev.supplychain.seraitrade.net"
+#    - name: auth0VisSpaClientId
+#      value: "YcLwSYrD0hY5Y1YOVamlyeORbTSjZmEV"
+#    - name: visibilityURL
+#      value: "https://dev.visibility.seraitrade.net"
+
+cloudSQLProxy:
+  enabled: false
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    cpu: 1000m
+    memory: 2Gi
+  requests:
+    cpu: 50m
+    memory: 500Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80

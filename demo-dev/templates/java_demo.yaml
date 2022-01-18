@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: java_demo-dev
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: default
+    server: {{ .Values.spec.destination.server }}
+  project: demo-dev
+  source:
+    path: java_demo
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+    helm:
+      valueFiles:
+      - values.yaml
+      - values-dev.yaml
+      - values-dev-image.yaml
+      releaseName: java_demo
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
