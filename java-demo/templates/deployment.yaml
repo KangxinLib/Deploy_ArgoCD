@@ -37,7 +37,21 @@ spec:
         - name: {{ include "app-service.fullname" . }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ printf "ghcr.io/kangxinlib/java_demo:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ printf "ghcr.io/kangxinlib/java_demo"}}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            {{- if .Values.cloudSQLProxy.enabled }}
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://127.0.0.1:5432/{{ (split "-" (include "app-service.fullname" .))._0 }}?ssl=true&sslmode=disable"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: {{ include "app-service.gsaDBName" . }}
+            - name: DB_INSTANCE_ID
+              value: {{ include "app-service.dbInstanceId" . }}
+            {{- end }}
+#            {{- if .Values.PubSub }}
+#            - name: GCS_NOTIFICATION_SUBSCRIPTION
+#              value: "data-pipeline-topic-sub-{{ .Values.env }}"
+#            {{- end }}
           ports:
             - name: {{ printf "http-%s-pod-port" (include "app-service.fullname" .) | trunc 15 | trimSuffix "-" }}
               containerPort: {{ .Values.containers.ports.containerPort }}
