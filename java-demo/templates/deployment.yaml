@@ -38,7 +38,6 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ printf "ghcr.io/kangxinlib/java_demo:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: IfNotPresent
           env:
             {{- if .Values.cloudSQLProxy.enabled }}
             - name: SPRING_DATASOURCE_URL
