@@ -2,5 +2,5 @@ spec:
   destination:
     server: https://kubernetes.default.svc
   source:
-    repoURL: https://github.com/KangxinLib/Deploy_ArgoCD.git
+    repoURL: git@github.com:KangxinLib/Deploy_ArgoCD.git
     targetRevision: HEAD
