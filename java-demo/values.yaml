@@ -37,17 +37,6 @@ serviceAccount:
 
 podAnnotations: {}
 
-#podSecurityContext:
-#  fsGroup: 1000
-
-#securityContext:
-#  capabilities:
-#    drop:
-#    - ALL
-  # readOnlyRootFilesystem: true
-#  runAsNonRoot: true
-#  runAsUser: 1000
-
 service:
   type: ClusterIP
   port: 80
