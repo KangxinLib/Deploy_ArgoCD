@@ -1,4 +1,4 @@
 image:
-  tag: b17146959ccba3e4d225121a64b42554d2d73342
+  tag: 7ca53a86ab7934a435c127cc48360b998f0338dc
 env: dev
 fullnameOverride: java-demo
